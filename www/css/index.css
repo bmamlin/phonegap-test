@@ -135,9 +135,9 @@ button {
 }
 
 .image {
-    width: 100%;
+    display: inline-block;
     height: 200px;
-    margin: 10px;
+    margin: 20px;
 }
 .image img {
     display: block;

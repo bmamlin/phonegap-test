@@ -38,14 +38,15 @@
                     .attr('src', 'data:image/jpeg;base64,'+imageData);
                 var imageContainer = $('<div class="image"></div>');
                 imageContainer.append(image);
-                imageContainer.on("taphold",function() {
-                    this.remove();
+                imageContainer.click(function() {
+                    console.log('removing image');
+                    $(this).remove();
                 });
                 console.log('appending image');
                 $('#images').append(imageContainer);
             }
             function onFail(message) {
-                alert('Failed because: ' + message);
+                // ignore (user probably cancelled image)
             }
             function scan() {
                 console.log('scanning...');
