@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Regenstrief Gopher Camera</title>
         <script src="js/jquery-2.1.0.min.js"></script>
+        <script src="js/jquery.cookie.min.js"></script>
         <script>
             function addImage() {
                 console.log('adding image');
@@ -74,12 +75,14 @@
         <button onclick="addImage()">Add Picture</button>
         <button>Submit</button>
         <a href="login.html">login</a>
+        <div id="session"></div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
             $(document).ready(function() {
                 $('#barcode-icon').click(scan);
+                $('#session').text($.cookie('gophercam-auth'));
             });
         </script>
     </body>

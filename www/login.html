@@ -7,12 +7,18 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Regenstrief Gopher Camera</title>
         <script src="js/jquery-2.1.0.min.js"></script>
+        <script src="js/jquery.cookie.min.js"></script>
         <script>
         function authenticate() {
             console.log('authenticating');
             var username = $('#username').val();
             var password = $('#password').val();
             console.log('authenticated');
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+            $.cookie('gophercam_auth', uuid);
             window.location = 'index.html';
         }
         </script>
@@ -26,7 +32,7 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                // jquery ready
+                $.removeCookie('gophercam_auth');
             });
         </script>
     </body>
