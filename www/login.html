@@ -9,8 +9,10 @@
         <script src="js/jquery-2.1.0.min.js"></script>
         <script>
         function authenticate() {
+            console.log('authenticating');
             var username = $('#username').val();
             var password = $('#password').val();
+            console.log('authenticated');
             window.location = 'index.html';
         }
         </script>
@@ -19,7 +21,7 @@
         <div id="error-message" class="error"></div>
         <input id="username" />
         <input id="password" type="password" />
-        <button id="login-button" onclick="authenticate">login</button>
+        <button id="login-button" onclick="authenticate()">login</button>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
