@@ -38,6 +38,9 @@
                     .attr('src', 'data:image/jpeg;base64,'+imageData);
                 var imageContainer = $('<div class="image"></div>');
                 imageContainer.append(image);
+                imageContainer.on("taphold",function() {
+                    this.remove();
+                });
                 console.log('appending image');
                 $('#images').append(imageContainer);
             }
