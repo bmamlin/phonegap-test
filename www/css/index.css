@@ -118,7 +118,7 @@ h1 {
     padding: 15px;
 }
 
-#mrn {
+.field input {
     font-size: 20pt;
     width: 200px;
 }
