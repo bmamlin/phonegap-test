@@ -114,9 +114,18 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+.field {
+    padding: 15px;
+}
+
 #mrn {
     font-size: 20pt;
-    width: 250px;
+    width: 200px;
+}
+
+#barcode-icon img {
+    position: relative;
+    top: 15px;
 }
 
 button {
@@ -130,6 +139,6 @@ button {
     height: 200px;
 }
 .image img {
-    height: 100%;
-    width: auto;
+    max-width: 250px;
+    max-height: 200px;
 }
