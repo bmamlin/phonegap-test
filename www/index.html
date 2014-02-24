@@ -76,13 +76,12 @@
         <button>Submit</button>
         <a href="login.html">login</a>
         <div id="session"></div>
-        <div id="paul">Paul is a dork.</div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
             $(document).ready(function() {
-                var authcookie = $.cookie('gophercam_auth');
+                var authcookie = $.cookie('gophercam_auth', {path:'/'});
                 if (!authcookie) {
                     console.log('forcing login');
                     window.location = 'login.html';

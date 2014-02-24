@@ -20,7 +20,7 @@
                 return v.toString(16);
             });
             console.log('setting auth cookie');
-            $.cookie('gophercam_auth', uuid);
+            $.cookie('gophercam_auth', uuid, { path: '/' });
             window.location = 'index.html';
         }
         </script>
