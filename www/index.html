@@ -81,8 +81,12 @@
         <script type="text/javascript">
             app.initialize();
             $(document).ready(function() {
-                $('#barcode-icon').click(scan);
                 var authcookie = $.cookie('gophercam_auth');
+                if (!authcookie) {
+                    console.log('forcing login');
+                    window.location = 'login.html';
+                }
+                $('#barcode-icon').click(scan);
                 console.log('auth cookie value: ' + authcookie);
                 $('#session').text(authcookie);
             });
