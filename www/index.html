@@ -82,7 +82,9 @@
             app.initialize();
             $(document).ready(function() {
                 $('#barcode-icon').click(scan);
-                $('#session').text($.cookie('gophercam-auth'));
+                var authcookie = $.cookie('gophercam_auth');
+                console.log('auth cookie value: ' + authcookie);
+                $('#session').text(authcookie);
             });
         </script>
     </body>
