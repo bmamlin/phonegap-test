@@ -27,26 +27,33 @@
         <script src="js/jquery-2.1.0.min.js"></script>
         <script>
             function addImage() {
+                console.log('adding image');
                 navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
                      destinationType: Camera.DestinationType.DATA_URL
                 });
             }
             function onSuccess(imageData) {
+                console.log('image received');
                 var image = $('<img />')
-                    .attr('src', 'data:image/jpeg;base64,'+imageData)
-                    .addClass('image');
-                $('#images').append(image);
+                    .attr('src', 'data:image/jpeg;base64,'+imageData);
+                var imageContainer = $('<div class="image"></div>');
+                imageContainer.append(image);
+                console.log('appending image');
+                $('#images').append(imageContainer);
             }
-            
             function onFail(message) {
                 alert('Failed because: ' + message);
             }
             function scan() {
-                var scanner = phonegap.require("cordova/plugin/BarcodeScanner");
+                console.log('scanning...');
+                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
                 scanner.scan( function(result) {
                     if (!result.cancelled) {
+                        console.log('scanned '+result.text);
                         $('#mrn').val(result.text);
+                    } else {
+                        console.log('scan cancelled');
                     }
                 });
             }
@@ -59,7 +66,7 @@
                 <img src="img/barcode.png" />
             </a>
         </div>
-        <div class="images"></div>
+        <div id="images"></div>
         <button onclick="addImage()">Add Picture</button>
         <button>Submit</button>
         <script type="text/javascript" src="phonegap.js"></script>
