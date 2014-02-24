@@ -26,50 +26,48 @@
         <title>Regenstrief Gopher Camera</title>
         <script src="js/jquery-2.1.0.min.js"></script>
         <script>
-            function getImage() {
+            function addImage() {
                 navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
                      destinationType: Camera.DestinationType.DATA_URL
                 });
             }
             function onSuccess(imageData) {
-                var image = document.getElementById('myImage');
-                image.src = "data:image/jpeg;base64," + imageData;
+                var image = $('<img />')
+                    .attr('src', 'data:image/jpeg;base64,'+imageData)
+                    .addClass('image');
+                $('#images').append(image);
             }
             
             function onFail(message) {
                 alert('Failed because: ' + message);
             }
             function scan() {
-                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+                var scanner = phonegap.require("cordova/plugin/BarcodeScanner");
 
                 scanner.scan( function(result) {
                     if (!result.cancelled) {
-                        $('#myScan').text(result.text);
+                        $('#mrn').val(result.text);
                     }
                 });
             }
         </script>
     </head>
     <body>
-        <div class="app">
-            <div id="deviceready">
-                <div class="event listening">Connecting to Device</div>
-                <div class="event received">
-                </div>
-            </div>
+        <div class="field">
+            <input id="mrn" type="tel" />
+            <a id="barcode-icon" href="#" border="0">
+                <img src="img/barcode.png" />
+            </a>
         </div>
-        tel: <input type="tel" /><br/>
-        num: <input type="number" /><br/>
-        <div><img id="myImage" height="100"/></div>
-        <div id="myScan"></div>
-        <div><button onclick="getImage()">Take Picture</button></div>
-        <div><button onclick="scan()">Scan</button></div>
+        <div class="images"></div>
+        <button onclick="addImage()">Add Picture</button>
+        <button>Submit</button>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
             $(document).ready(function() {
-                // initialize jquery
+                $('#barcode-icon').click(scan);
             });
         </script>
     </body>
